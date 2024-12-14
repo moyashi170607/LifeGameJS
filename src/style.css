@@ -1,0 +1,12 @@
+.title_h1{
+  text-align: center;
+}
+
+#app{
+  text-align: center;
+}
+
+#app canvas{
+  margin-left: auto;
+  margin-right: auto;
+}
