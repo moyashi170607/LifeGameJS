@@ -1,7 +1,8 @@
 //cssを読み込む
 import Phaser from 'phaser3';
 import './style.css'
-import { SimulationMode } from './scene/simulation_mode';
+import { SimulationMode } from './scene/SimulationMode';
+import { InitSetting } from './scene/InitSetting';
 
 export let gameScreen:HTMLElement | null;
 export let gameScreenWidth:number;
@@ -15,6 +16,7 @@ const config:Phaser.Types.Core.GameConfig = {
     antialias:false,
     pixelArt:true,
     scene:[
+      InitSetting,
       SimulationMode
     ]
 }

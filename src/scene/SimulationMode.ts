@@ -15,14 +15,16 @@ export class SimulationMode extends Phaser.Scene{
     }
 
     create(){
-        for(let i:number=0; i<0; i++){
-            for(let l:number=0;l<0; l++){
+        this.cameras.main.setBackgroundColor("#616161");
+
+        for(let i:number=0; i<10; i++){
+            for(let l:number=0;l<10; l++){
                 this.ground[i][l] = 0;
             }
         }
 
-        for(let i:number=0; i<0; i++){
-            for(let l:number=0;l<0; l++){
+        for(let i:number=0; i<10; i++){
+            for(let l:number=0;l<10; l++){
                 
             }
         }
