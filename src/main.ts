@@ -8,6 +8,21 @@ export let gameScreen:HTMLElement | null;
 export let gameScreenWidth:number;
 export let gameScreenHeight:number;
 
+class LoadScene extends Phaser.Scene{
+  constructor(){
+    super({key:"load-scene",active:true})
+  }
+
+  preload(){
+    this.load.image("grass","/img/life/grass.png");
+    this.load.image("grass2","/img/life/grass2.png");
+  }
+
+  create(){
+    this.scene.start("init-setting")
+  }
+}
+
 const config:Phaser.Types.Core.GameConfig = {
     width:800,
     height:800,
@@ -16,6 +31,7 @@ const config:Phaser.Types.Core.GameConfig = {
     antialias:false,
     pixelArt:true,
     scene:[
+      LoadScene,
       InitSetting,
       SimulationMode
     ]
