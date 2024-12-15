@@ -3,6 +3,8 @@ import Phaser from 'phaser3';
 import './style.css'
 import { SimulationMode } from './scene/SimulationMode';
 import { InitSetting } from './scene/InitSetting';
+import { setting } from './setting';
+
 
 export let gameScreen:HTMLElement | null;
 export let gameScreenWidth:number;
@@ -24,8 +26,8 @@ class LoadScene extends Phaser.Scene{
 }
 
 const config:Phaser.Types.Core.GameConfig = {
-    width:800,
-    height:800,
+    width:setting.gameScreen.width,
+    height:setting.gameScreen.height,
     type:Phaser.AUTO,
     parent:"app",
     antialias:false,

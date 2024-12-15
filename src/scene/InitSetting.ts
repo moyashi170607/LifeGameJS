@@ -3,9 +3,11 @@
 1 = 草
 */
 
+import { GridManager } from "../module/GridManager";
+import { setting } from "../setting";
+
 export class InitSetting extends Phaser.Scene{
-    ground:number[][] = [];
-    grid:Phaser.GameObjects.Rectangle[][] = [];
+    ground:Phaser.GameObjects.Rectangle[][] = [];
 
     constructor(){
         super({key:"init-setting",active:false});
@@ -16,44 +18,22 @@ export class InitSetting extends Phaser.Scene{
     }
 
     create(){
-        const GRID:{X_LENGHT:number,Y_LENGHT:number,WIDTH:number,HEIGHT:number,LINE_WIDTH:number} = {
-            X_LENGHT:10,
-            Y_LENGHT:10,
-            WIDTH:30,
-            HEIGHT:30,
-            LINE_WIDTH:5
-        }
-
         this.cameras.main.setBackgroundColor("#616161");
 
-        for(let i:number=0; i<GRID.X_LENGHT;i++){
-            this.ground.push(Array(GRID.Y_LENGHT))
-            this.grid.push(Array(GRID.Y_LENGHT))
-        }
+        GridManager.init(setting.grid.x_length,setting.grid.y_length);
+            for(let i=0;i<setting.grid.x_length;i++){
+                this.ground.push(new Array(setting.grid.y_length));
+            }
 
-        for(let i:number=0; i<GRID.X_LENGHT; i++){
-            for(let l:number=0;l<GRID.Y_LENGHT; l++){
-                this.ground[i][l] = 0;
+        for(let i=0;i<setting.grid.x_length;i++){
+            for(let l=0;l<setting.grid.y_length;l++){
+                const X:number = setting.startPosition.x + setting.grid.width*i;
+                const Y:number = setting.startPosition.y + setting.grid.height*l;
+                this.ground[i][l] = this.add.rectangle(X,Y,setting.grid.width,setting.grid.height,0x5e4308);
+                this.ground[i][l].setStrokeStyle(setting.grid.line_width,0x000000);
+                this.ground[i][l].setOrigin(0,0)
             }
         }
 
-        const StartPositon:{X:number,Y:number} = {
-            X:30,
-            Y:50
-        }
-
-        for(let i:number=0; i<GRID.X_LENGHT; i++){
-            for(let l:number=0;l<GRID.Y_LENGHT; l++){
-                const X = StartPositon.X + GRID.WIDTH*l;
-                const Y = StartPositon.Y + GRID.HEIGHT*i;
-
-                switch(this.ground[i][l]){
-                    case 0:
-                        this.grid[i][l] = this.add.rectangle(X,Y,GRID.WIDTH,GRID.HEIGHT,0xa17000,1);
-                }
-
-                this.grid[i][l].setStrokeStyle(GRID.LINE_WIDTH,0x000000,1)
-            }
-        }
     }
 }

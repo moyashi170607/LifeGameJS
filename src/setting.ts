@@ -1,0 +1,20 @@
+export const setting:config_type = {
+    gameScreen:{
+        width:800,
+        height:800
+    },
+    startPosition:{
+        x:30,
+        y:30
+    },
+    grid:{
+        width:50,
+        height:50,
+        x_length:15,
+        y_length:15,
+        line_width:5
+    },
+    life:{
+        defaultSize:50
+    }
+}

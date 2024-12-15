@@ -1,0 +1,20 @@
+interface config_type{
+    gameScreen:{
+        width:number,
+        height:number
+    },
+    startPosition:{
+        x:number,
+        y:number
+    },
+    grid:{
+        width:number,
+        height:number,
+        x_length:number,
+        y_length:number,
+        line_width:number
+    },
+    life:{
+        defaultSize:number
+    }
+}
