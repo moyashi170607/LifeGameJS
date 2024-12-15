@@ -9,8 +9,8 @@ export let grid_graphics:Graphics[][] = [[]];
 
 //テクスチャを読み込み
 export let texture_dictionary:TextureDictionary = {
-  grass:await Assets.load("/img/grass.png"),
-  grass2:await Assets.load("/img/grass2.png")
+  grass:await Assets.load("/img/life/grass.png"),
+  grass2:await Assets.load("/img/life/grass2.png")
 };
 
 //divを取得
