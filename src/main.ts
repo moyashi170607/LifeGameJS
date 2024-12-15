@@ -1,61 +1,49 @@
 //cssを読み込む
-import Phaser from 'phaser3';
-import './style.css'
-import { SimulationMode } from './scene/SimulationMode';
-import { InitSetting } from './scene/InitSetting';
+import "./style.css"
+//PixiJSを読み込む
+import { Application, Assets, AssetsClass, Graphics, Renderer, Sprite } from "pixi.js";
 
-export let gameScreen:HTMLElement | null;
-export let gameScreenWidth:number;
-export let gameScreenHeight:number;
+//gridの図形描写オブジェクトが格納される配列
+//grid_graphics[x座標][y座標]
+export let grid_graphics:Graphics[][] = [[]];
 
-class LoadScene extends Phaser.Scene{
-  constructor(){
-    super({key:"load-scene",active:true})
-  }
+//テクスチャを読み込み
+export let texture_dictionary:TextureDictionary = {
+  grass:await Assets.load("/img/grass.png"),
+  grass2:await Assets.load("/img/grass2.png")
+};
 
-  preload(){
-    this.load.image("grass","/img/life/grass.png");
-    this.load.image("grass2","/img/life/grass2.png");
-  }
+//divを取得
+const APP_ELEMENT = document.getElementById("app");
 
-  create(){
-    this.scene.start("init-setting")
-  }
+//ステージが格納される変数
+let app:Application<Renderer>
+
+//型情報
+interface TextureDictionary{
+  grass:AssetsClass,
+  grass2:AssetsClass
 }
 
-const config:Phaser.Types.Core.GameConfig = {
-    width:800,
-    height:800,
-    type:Phaser.AUTO,
-    parent:"app",
-    antialias:false,
-    pixelArt:true,
-    scene:[
-      LoadScene,
-      InitSetting,
-      SimulationMode
-    ]
+
+const main = async () => {
+  app = await createApp();
 }
 
-export class Game extends Phaser.Game {
-    constructor(config:Phaser.Types.Core.GameConfig){
-        super(config);
-    }
+// 描画するためのステージを作成
+const createApp = async () => {
+
+  const app = new Application();
+
+  await app.init({ background: '#cccccc' ,width:800 , height:800});
+
+  if(APP_ELEMENT != null){
+    APP_ELEMENT.appendChild(app.canvas);
+  }else{
+    console.error("idがappである要素が見つかりません");
+  }
+
+  return app
 }
 
-let game:Phaser.Game;
-
-window.addEventListener("load", ()=>{
-    game = new Game(config);
-
-    gameScreen = document.getElementById("app");
-    if(gameScreen != null){
-      gameScreenWidth = gameScreen.clientWidth;
-      gameScreenHeight = gameScreen.clientHeight;
-    }else{
-      console.error("Error Not Found HTMLElement");
-    }
-})
-
-window.addEventListener('resize', () => game.scale.refresh());
-window.addEventListener('load', () => {game.scale.refresh()});
+main();
