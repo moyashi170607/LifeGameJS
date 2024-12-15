@@ -12,7 +12,9 @@ interface config_type{
         height:number,
         x_length:number,
         y_length:number,
-        line_width:number
+        line_width:number,
+        color:number,
+        strokeColor:number
     },
     life:{
         defaultSize:number

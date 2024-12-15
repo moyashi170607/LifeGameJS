@@ -29,8 +29,8 @@ export class InitSetting extends Phaser.Scene{
             for(let l=0;l<setting.grid.y_length;l++){
                 const X:number = setting.startPosition.x + setting.grid.width*i;
                 const Y:number = setting.startPosition.y + setting.grid.height*l;
-                this.ground[i][l] = this.add.rectangle(X,Y,setting.grid.width,setting.grid.height,0x5e4308);
-                this.ground[i][l].setStrokeStyle(setting.grid.line_width,0x000000);
+                this.ground[i][l] = this.add.rectangle(X,Y,setting.grid.width,setting.grid.height,setting.grid.color);
+                this.ground[i][l].setStrokeStyle(setting.grid.line_width,setting.grid.strokeColor);
                 this.ground[i][l].setOrigin(0,0)
             }
         }

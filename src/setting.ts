@@ -12,7 +12,9 @@ export const setting:config_type = {
         height:50,
         x_length:15,
         y_length:15,
-        line_width:5
+        line_width:5,
+        color:0x5e4308,
+        strokeColor:0x000000
     },
     life:{
         defaultSize:50
