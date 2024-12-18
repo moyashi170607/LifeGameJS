@@ -40,10 +40,10 @@ export let GridManager:GridManager_type = {
     isNullGrid(gridX,gridY):boolean{
         let tmp:boolean;
 
-        if(gridX < 0 || gridY < 0 || gridX >= setting.grid.width || gridY >= setting.grid.height || this.grid[gridX][gridY] === null || this.grid[gridX][gridY] === undefined){
-            tmp = false;
-        }else{
+        if(gridX < 0 || gridY < 0 || gridX >= setting.grid.x_length || gridY >= setting.grid.y_length || this.grid[gridX][gridY] === null || this.grid[gridX][gridY] === undefined){
             tmp = true;
+        }else{
+            tmp = false;
         }
 
         return tmp;

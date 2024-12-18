@@ -12,15 +12,19 @@ export class BaseLife extends Phaser.GameObjects.Sprite{
 
         this.grid = [gridX,gridY];
 
-        const SCALE_X = this.width / setting.life.defaultSize;
-        const SCALE_Y = this.height / setting.life.defaultSize;
+        const SCALE_X = setting.life.defaultSize / this.width;
+        const SCALE_Y = setting.life.defaultSize / this.height;
+
         this.setScale(SCALE_X,SCALE_Y);
+
+        this.setOrigin(0,0)
+
     }
 
     //各生物がこのターン行う内容を規定する
     //派生クラスでオーバーライドしてください。
     action():void{
-        alert("BaseLifeのacrion関数はオーバーライドされる必要があります。")
+        alert("BaseLifeのacrion関数はオーバーライドされる必要があります。");
     }
 
     //周囲１マスの生物を取得する
