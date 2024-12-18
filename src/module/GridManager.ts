@@ -1,10 +1,14 @@
+import { setting } from "../setting";
+
 interface GridManager_type{
     grid:number[][],
 
     next_ground:Phaser.GameObjects.Rectangle[][]
     next_grid:number[][],
     init:(x_length:number,y_length:number)=>void,
-    adapt_next_grid:()=>void
+    adapt_next_grid:()=>void,
+    isNullGrid:(gridX:number,gridY:number)=>boolean,
+    getGridElement:(gridX:number,gridY:number)=>number
 }
 
 export let GridManager:GridManager_type = {
@@ -27,10 +31,29 @@ export let GridManager:GridManager_type = {
         }
 
         this.next_grid = structuredClone(this.grid);
-
-        console.log(this.grid);
     },
+
     adapt_next_grid:function(){
         this.grid = structuredClone(this.next_grid)
+    },
+
+    isNullGrid(gridX,gridY):boolean{
+        let tmp:boolean;
+
+        if(gridX < 0 || gridY < 0 || gridX >= setting.grid.width || gridY >= setting.grid.height || this.grid[gridX][gridY] === null || this.grid[gridX][gridY] === undefined){
+            tmp = false;
+        }else{
+            tmp = true;
+        }
+
+        return tmp;
+    },
+
+    getGridElement(gridX,gridY){
+        if(this.isNullGrid(gridX,gridY) == true){
+            return -1;
+        }else{
+            return this.grid[gridX][gridY];
+        }
     }
 }
